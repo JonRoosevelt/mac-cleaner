@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mac-cleaner"
+version = "0.1.0"
+description = "A conservative macOS cache-cleaning CLI"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "mac-cleaner contributors" }]
+dependencies = ["typer>=0.12", "rich>=13.7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+mac-cleaner = "mac_cleaner.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mac_cleaner"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
